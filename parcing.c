@@ -45,16 +45,16 @@ int main(int ac, char **av)
 	i = 0;
 	while (res[i])
 	{
-		if (!(ft_atoi(res[i])))  // if ft_atoi return by NULL free the result[i] and free result in general
+		if (!(ft_atoi(res[i])))
 		{
-			res = ft_free(res, i);
-			break ;
+			printf("\nhe enter here\n");
+			return (ft_free(res, i), 0);
 		}
 		else
 			printf("here -> (%ld)", (ft_atoi(res[i])));
 		i++;
 	}
-	free(res);
+	ft_free(res, i);
 	free(result);
     return (0);
 }

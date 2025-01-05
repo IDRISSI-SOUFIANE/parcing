@@ -79,8 +79,9 @@ void	*ft_free(char **s, int count)
 	int	i;
 
 	i = 0;
-	while (i < count)
+	while (i <= count)
 	{
+		printf("\nHe enter ft_free: %d\n", i);
 		free(s[i]);
 		i++;
 	}
