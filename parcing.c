@@ -13,7 +13,7 @@ char	*parsing(char **av)
 
 	i = 1;
 	result = ft_strdup(av[i]);
-	while (av [++i])
+	while (av[++i])
 	{
 		tmp = result;
 		result = ft_strjoin(result, av[i]);
@@ -26,35 +26,35 @@ char	*parsing(char **av)
 	return (result);
 }
 
-int main(int ac, char **av)
+int	ft_check_parcing(char **res, char *result)
 {
-	atexit(f);
-	char	*result;
-    char	**res;
-	int		i;
+	int	i;
 
-	if (ac == 1 || av[1] == NULL)
-        return (0);
-	if (av[1][0] == '\0')
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
-    result = parsing(av);
-	res = ft_split(result, ' ');
 	i = 0;
 	while (res[i])
 	{
 		if (!(ft_atoi(res[i])))
-		{
-			printf("\nhe enter here\n");
-			return (ft_free(res, i), 0);
-		}
+			return (ft_free(res, (i+1)), free(result), 0);
 		else
 			printf("here -> (%ld)", (ft_atoi(res[i])));
 		i++;
 	}
 	ft_free(res, i);
 	free(result);
+	return (1);
+}
+int main(int ac, char **av)
+{
+	atexit(f);
+	char	*result;
+    char	**res;
+
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+        return (1);
+    result = parsing(av);
+	res = ft_split(result, ' ');
+	ft_check_parcing(res, result);
+
+
     return (0);
 }

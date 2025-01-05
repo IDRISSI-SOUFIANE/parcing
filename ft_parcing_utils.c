@@ -9,7 +9,6 @@ size_t	ft_strlen(char *s)
         i++;
     return (i);
 }
-
 char	*ft_strcpy(char	*dst, char *s)
 {
 	int	i;
@@ -25,7 +24,6 @@ char	*ft_strcpy(char	*dst, char *s)
 	dst[i] = '\0';
 	return (dst);
 }
-
 char	*ft_strcat(char *s1, char *s2)
 {
 	int	i;
@@ -52,7 +50,7 @@ char	*ft_strdup(char *s)
 	if (!str)
 		return (NULL);
 	ft_strcpy(str, s);
-	return (str); // => you are return string with malloc should free it.
+	return (str);
 }
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -73,15 +71,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	str[len_s1 + len_s2 + 1] = '\0';
 	return (str);
 }
-/*split*/
-void	*ft_free(char **s, int count)
+void	*ft_free(char **s, long count)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	while (i <= count)
 	{
-		printf("\nHe enter ft_free: %d\n", i);
 		free(s[i]);
 		i++;
 	}
@@ -92,7 +88,6 @@ int	is_space(char c, char sp)
 {
 	return (c == sp);
 }
-
 int	ft_count_word(char *str, char sp)
 {
   int    i;
@@ -113,7 +108,6 @@ int	ft_count_word(char *str, char sp)
 	}
 	return (count);
 }
-
 char	*ft_strdup_split(char *str, int *preffix, char sp)
 {
 	char	*word;
@@ -162,12 +156,10 @@ char	**ft_split(char *str, char sp)
 	word_arr[count_word] = NULL;
 	return (word_arr);
 }
-
 int	is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
-
 int	duplicate_sign(char *s)
 {
 	int		i;
@@ -202,7 +194,6 @@ int	check_digit(char *s)
 	}
 	return (1);
 }
-
 long	ft_atoi(char *s)
 {
 	int		sign;
@@ -227,5 +218,6 @@ long	ft_atoi(char *s)
 	result = result * sign;
 	if (result > INT_MAX || result < INT_MIN)
 		return (0);
+	
 	return (result);
 }

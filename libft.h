@@ -14,14 +14,14 @@ char	*ft_strcat(char *s1, char *s2);
 char	*ft_strdup(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 
-void	*ft_free(char **s, int count);
+void	*ft_free(char **s, long count);
 int     is_space(char c, char sp);
 int     ft_count_word(char *str, char sp);
 char    *ft_strdup_split(char *str, int *preffix, char sp);
 char    **ft_split(char *str, char sp);
 
 
-int	duplicate_sign(char *s);
-int	check_digit(char *s);
-long	ft_atoi(char *s);
+int     duplicate_sign(char *s);
+int     check_digit(char *s);
+long    ft_atoi(char *s);
 # endif
