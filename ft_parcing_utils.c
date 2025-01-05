@@ -147,7 +147,7 @@ char	**ft_split(char *str, char sp)
 
 	count_word = ft_count_word(str, sp);
 	word_arr = (char **)malloc((count_word + 1) * sizeof(char *));
-	if (!count_word)
+	if (!word_arr)
 		return (NULL);
 	preffix = 0;
 	i = 0;
@@ -158,6 +158,7 @@ char	**ft_split(char *str, char sp)
 			return (ft_free(word_arr, i));
 		i++;
 	}
+	word_arr[count_word] = NULL;
 	return (word_arr);
 }
 

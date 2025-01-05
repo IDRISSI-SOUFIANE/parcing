@@ -28,13 +28,18 @@ char	*parsing(char **av)
 
 int main(int ac, char **av)
 {
-	// atexit(f);
+	atexit(f);
 	char	*result;
     char	**res;
 	int		i;
 
-	if (ac == 1 || av[1] == NULL || av[1][0] == '\0' )
+	if (ac == 1 || av[1] == NULL)
         return (0);
+	if (av[1][0] == '\0')
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
     result = parsing(av);
 	res = ft_split(result, ' ');
 	i = 0;
@@ -46,9 +51,10 @@ int main(int ac, char **av)
 			break ;
 		}
 		else
-			printf("%ld", (ft_atoi(res[i])));
+			printf("here -> (%ld)", (ft_atoi(res[i])));
 		i++;
 	}
+	free(res);
 	free(result);
     return (0);
 }
