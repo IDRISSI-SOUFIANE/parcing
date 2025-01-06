@@ -44,7 +44,10 @@ int	ft_argc(int ac, char **av)
 				}
 			}
 			else
+			{
 				j++;
+				free(result[j]);
+			}
 		}
 		free(result);
 		i++;
