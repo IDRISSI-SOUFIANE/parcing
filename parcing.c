@@ -13,15 +13,22 @@ int	ft_check_parcing(char **res)
 	while (res[j])
 		j++;
 	i = 0;
+
+	// printf ("(j:  %d)\n", j);
 	while (res[i])
 	{
 		if (!(ft_atoi(res[i])))
-			return (ft_free(res, j), free(res), 0);
+		{
+			printf("I enter here!!");
+			return (0);
+		}
+			// return (ft_free(res, (j)), free(res), 0);
 		else
 			printf("(%ld) -> ", ft_atoi(res[i]));
 		i++;
 	}
-	ft_free(res, i);
+	printf ("\nI am eter!!!\n");
+	ft_free(res, j);
 	return (1);
 }
 
@@ -33,7 +40,7 @@ int	ft_argc(int ac, char **av)
 	i = 1; // 1 < 4
 	while (i < ac)
 	{
-		result = ft_split(av[i], ' '); // "l 1 2 3" => free 'l' lose the last numbers
+		result = ft_split(av[i], ' ');
 		if (!(ft_check_parcing(result)))
 			return (result = NULL, 0);
 		i++;

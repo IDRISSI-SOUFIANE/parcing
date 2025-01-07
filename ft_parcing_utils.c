@@ -76,7 +76,7 @@ void	*ft_free(char **s, long count)
 	long	i;
 
 	i = 0;
-	while (i <= count)
+	while (i < count)
 	{
 		free(s[i]);
 		i++;
