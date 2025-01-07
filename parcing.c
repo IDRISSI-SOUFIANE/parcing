@@ -9,12 +9,13 @@ int	ft_check_parcing(char **res)
 	int	i;
 	int	j;
 
+	if (res[0] == NULL)
+		return (free(res), write(1, "!!Error\n",6), 0);
 	j = 0;
 	while (res[j])
 		j++;
 	i = 0;
 
-	// printf ("(j:  %d)\n", j);
 	while (res[i])
 	{
 		if (!(ft_atoi(res[i])))
@@ -23,17 +24,16 @@ int	ft_check_parcing(char **res)
 			printf("(%ld) -> ", ft_atoi(res[i]));
 		i++;
 	}
-	printf ("\nI am eter!!!\n");
 	ft_free(res, j);
 	return (1);
 }
 
-int	ft_argc(int ac, char **av)
+int	ft_check_argv(int ac, char **av)
 {
 	int		i;
 	char	**result;
 
-	i = 1; // 1 < 4
+	i = 1;
 	while (i < ac)
 	{
 		result = ft_split(av[i], ' ');
@@ -41,16 +41,15 @@ int	ft_argc(int ac, char **av)
 			return (0);
 		i++;
 	}
-	// free(result);
 	return (1);
 }
 
 int main(int ac, char **av)
 {
-	atexit(f);
+	// atexit(f);
 	if (ac == 1 || (ac == 2 && !av[1][0]))
         return (1);
-	if(!(ft_argc(ac, av)))
+	if(!(ft_check_argv(ac, av)))
 	{
 		printf("I am heren\n");
 		return (0);

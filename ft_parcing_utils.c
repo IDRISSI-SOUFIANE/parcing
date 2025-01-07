@@ -150,7 +150,7 @@ char	**ft_split(char *str, char sp)
 	{
 		word_arr[i] = ft_strdup_split(str, &preffix, sp);
 		if (!word_arr[i])
-			return (ft_free(word_arr, i), NULL);
+			return (ft_free(word_arr, i));
 		i++;
 	}
 	word_arr[count_word] = NULL;
@@ -197,15 +197,13 @@ int	check_digit(char *s)
 long	ft_atoi(char *s)
 {
 	int		sign;
-	long	result;
+	long long	result;
 	int		i;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	if (!(duplicate_sign(s)))
-		return (0);
-	if (!(check_digit(s)))
+	if (!(duplicate_sign(s)) || !(check_digit(s)) )
 		return (0);
 	if (s[i] == '-' || s[i] == '+')
 		if (s[i++] == '-')
@@ -216,8 +214,109 @@ long	ft_atoi(char *s)
 		i++;
 	}
 	result = result * sign;
+	printf("%llu\n", (result));
+	while (getchar() != '\n');
 	if (result > INT_MAX || result < INT_MIN)
+	{
 		return (0);
+	}
 	
 	return (result);
 }
+
+/*
+
+long    ft_atoi(char *s, t_list **head_a)
+{
+    int     sign;
+    long    result;
+    int     i;
+
+    i = 0;
+    sign = 1;
+    result = 0;
+    if (!(duplicate_sign(s)))
+        return (0);
+    if (!(check_digit(s)))
+        return (0);
+    if (s[i] == '-' || s[i] == '+')
+        if (s[i++] == '-')
+            sign = -1;
+    while (s[i])
+    {
+        // Check for overflow before doing the multiplication
+        if (result > INT_MAX / 10 || 
+            (result == INT_MAX / 10 && (s[i] - '0') > INT_MAX % 10))
+            return (0);
+        // Check for underflow for negative numbers
+        if (result * sign < INT_MIN / 10 || 
+            (result * sign == INT_MIN / 10 && (s[i] - '0') * sign < INT_MIN % 10))
+            return (0);
+            
+        result = result * 10 + (s[i] - '0');
+        i++;
+    }
+    result = result * sign;
+    
+    // This check is now redundant but can be kept as a safety net
+    if (result > INT_MAX || result < INT_MIN)
+        return (0);
+        
+    put_in_a(head_a, result);
+    return (1);
+}
+
+*/
+
+
+/*
+
+
+static int check_overflow(long result, char digit, int sign)
+{
+    if (result > INT_MAX / 10 || 
+        (result == INT_MAX / 10 && (digit - '0') > INT_MAX % 10))
+        return (0);
+    if (result * sign < INT_MIN / 10 || 
+        (result * sign == INT_MIN / 10 && (digit - '0') * sign < INT_MIN % 10))
+        return (0);
+    return (1);
+}
+
+static int handle_sign(char *s, int *i)
+{
+    int sign;
+
+    sign = 1;
+    if (s[*i] == '-' || s[*i] == '+')
+        if (s[(*i)++] == '-')
+            sign = -1;
+    return (sign);
+}
+
+long    ft_atoi(char *s, t_list **head_a)
+{
+    int     sign;
+    long    result;
+    int     i;
+
+    i = 0;
+    result = 0;
+    if (!duplicate_sign(s) || !check_digit(s))
+        return (0);
+    sign = handle_sign(s, &i);
+    while (s[i])
+    {
+        if (!check_overflow(result, s[i], sign))
+            return (0);
+        result = result * 10 + (s[i] - '0');
+        i++;
+    }
+    result *= sign;
+    if (result > INT_MAX || result < INT_MIN)
+        return (0);
+    put_in_a(head_a, result);
+    return (1);
+}
+
+*/
