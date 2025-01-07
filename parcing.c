@@ -18,11 +18,7 @@ int	ft_check_parcing(char **res)
 	while (res[i])
 	{
 		if (!(ft_atoi(res[i])))
-		{
-			printf("I enter here!!");
-			return (0);
-		}
-			// return (ft_free(res, (j)), free(res), 0);
+			return (ft_free(res, (j)), 0);
 		else
 			printf("(%ld) -> ", ft_atoi(res[i]));
 		i++;
@@ -42,7 +38,7 @@ int	ft_argc(int ac, char **av)
 	{
 		result = ft_split(av[i], ' ');
 		if (!(ft_check_parcing(result)))
-			return (result = NULL, 0);
+			return (0);
 		i++;
 	}
 	// free(result);

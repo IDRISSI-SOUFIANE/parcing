@@ -150,7 +150,7 @@ char	**ft_split(char *str, char sp)
 	{
 		word_arr[i] = ft_strdup_split(str, &preffix, sp);
 		if (!word_arr[i])
-			return (ft_free(word_arr, i));
+			return (ft_free(word_arr, i), NULL);
 		i++;
 	}
 	word_arr[count_word] = NULL;
